@@ -9,14 +9,14 @@ from .models import URLMap
 def index_view():
     form = UrlForm()
     if form.validate_on_submit():
-        short_url = form.custom_id.data or URLMap.get_unique_short_id()
+        short = form.custom_id.data or URLMap.get_unique_short_id()
         url_map = URLMap(
             original=form.original_link.data,
-            short=short_url,
+            short=short,
         )
         db.session.add(url_map)
         db.session.commit()
-        flash(url_for('short_link_view', short=short_url, _external=True))
+        flash(url_for('short_link_view', short=short, _external=True))
     return render_template('index.html', form=form)
 
 
