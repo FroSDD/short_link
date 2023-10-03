@@ -22,7 +22,7 @@ def add_url():
         raise InvalidAPIUsage(
             'Указано недопустимое имя для короткой ссылки')
     if URLMap.query.filter_by(short=data['custom_id']).first():
-        raise InvalidAPIUsage(f'Имя {data["custom_id"]} уже занято!')
+        raise InvalidAPIUsage(f'Имя "{data["custom_id"]}" уже занято.')
     url_map = URLMap()
     url_map.from_dict(data)
     db.session.add(url_map)

@@ -27,4 +27,4 @@ class UrlForm(FlaskForm):
 
     def validate_custom_id(self, field):
         if field.data and URLMap.query.filter_by(short=field.data).first():
-            raise ValidationError(f'Имя {field.data} уже занято!')
+            raise ValidationError(f'Имя {field.data} уже занято.')
