@@ -3,6 +3,7 @@ from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import URL, DataRequired, Length, Optional, Regexp, ValidationError
 
 from .models import URLMap
+from .constants import MAX_CUSTOM_SIZE,MAX_LINK_SIZE, LINK
 
 
 class UrlForm(FlaskForm):
@@ -10,16 +11,16 @@ class UrlForm(FlaskForm):
         'Введите ссылку для укорачивания',
         validators=[
             DataRequired(message='Обязательное поле'),
-            Length(1, 256),
+            Length(max=MAX_LINK_SIZE),
             URL(require_tld=True, message='Некорректный URL')
         ]
     )
     custom_id = StringField(
         'Ваша короткая ссылка',
         validators=[
-            Length(1, 16),
+            Length(max=MAX_CUSTOM_SIZE),
             Optional(),
-            Regexp(r'^[A-Za-z0-9]+$',
+            Regexp(regex=LINK,
                    message='Только лат.буквы и цифры 0-9 ')
         ]
     )
