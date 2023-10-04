@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import URL, DataRequired, Length, Optional, Regexp, ValidationError
 
 from .models import URLMap
-from .constants import MAX_CUSTOM_SIZE,MAX_LINK_SIZE, LINK
+from .constants import MAX_CUSTOM_SIZE, MAX_LINK_SIZE, LINK
 
 
 class UrlForm(FlaskForm):
